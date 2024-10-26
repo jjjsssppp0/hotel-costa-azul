@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Habitaciones</title>
+    <style>
+        body { font-family: Arial, sans-serif; }
+        h1 { text-align: center; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 8px; border: 1px solid #ddd; text-align: center; }
+        th { background-color: #f2f2f2; }
+        img { width: 100px; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Habitaciones - Hotel Costa Azul</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Número</th>
+                <th>Tipo</th>
+                <th>Precio (USD)</th>
+                <th>Capacidad</th>
+                <th>Descripción</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="habitacion : ${habitaciones}">
+                <td th:text="${habitacion.numero}">Número</td>
+                <td th:text="${habitacion.tipo}">Tipo</td>
+                <td th:text="${habitacion.precio}">Precio</td>
+                <td th:text="${habitacion.capacidad}">Capacidad</td>
+                <td th:text="${habitacion.descripcion}">Descripción</td>
+                <!-- Para la imagen, iText podría necesitar una ruta absoluta o un recurso local -->
+                <td><img th:src="${habitacion.urlImagen}" alt="Imagen de habitación"></td>
+            </tr>
+        </tbody>
+    </table>
+    <p>Reporte generado por: <span th:text="${nombre_usuario}">Nombre del Usuario</span></p>
+    <p>Fecha: <span th:text="${#dates.format(new java.util.Date(), 'dd/MM/yyyy')}">Fecha Actual</span></p>
+</body>
+</html>

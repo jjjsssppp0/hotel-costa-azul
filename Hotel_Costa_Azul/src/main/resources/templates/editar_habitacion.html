@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Habitación</title>
+    <!-- Incluir Bootstrap CSS desde CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #343a40; /* Color de fondo oscuro */
+            color: #ffffff; /* Color del texto blanco */
+        }
+        .container {
+            margin-top: 50px; /* Espacio superior para el contenedor */
+        }
+        .form-control {
+            background-color: #495057; /* Fondo de los campos de entrada */
+            color: #ffffff; /* Color del texto de los campos de entrada */
+        }
+        .form-control::placeholder {
+            color: #ffffff; /* Color del placeholder */
+        }
+        .btn-success {
+            background-color: #28a745; /* Color del botón de éxito */
+        }
+        .btn-success:hover {
+            background-color: #218838; /* Color al pasar el mouse */
+        }
+        .btn-danger {
+            background-color: #dc3545; /* Color del botón de peligro */
+        }
+        .btn-danger:hover {
+            background-color: #c82333; /* Color al pasar el mouse */
+        }
+        .alert {
+            display: none; /* Ocultar alertas por defecto */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Editar Habitación</h1>
+        <form th:action="@{/habitaciones/editar}" method="post">
+            <input type="hidden" th:name="habitacionId" th:value="${habitacion.habitacionId}" />
+            
+            <div class="form-group">
+                <label for="numero">Número:</label>
+                <input type="text" class="form-control" id="numero" th:name="numero" th:value="${habitacion.numero}" required placeholder="Ingrese el número de la habitación" />
+            </div>
+            
+            <div class="form-group">
+                <label for="tipo">Tipo:</label>
+                <input type="text" class="form-control" id="tipo" th:name="tipo" th:value="${habitacion.tipo}" required placeholder="Ingrese el tipo de habitación" />
+            </div>
+            
+            <div class="form-group">
+                <label for="precio">Precio:</label>
+                <input type="number" class="form-control" id="precio" th:name="precio" th:value="${habitacion.precio}" required step="0.01" placeholder="Ingrese el precio de la habitación" />
+            </div>
+
+            <div class="form-group">
+                <label for="capacidad">Capacidad:</label>
+                <input type="number" class="form-control" id="capacidad" th:name="capacidad" th:value="${habitacion.capacidad}" required placeholder="Ingrese la capacidad de la habitación" />
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripción:</label>
+                <textarea class="form-control" id="descripcion" th:name="descripcion" th:text="${habitacion.descripcion}" rows="3" placeholder="Ingrese la descripción de la habitación"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="urlImagen">URL de Imagen:</label>
+                <input type="text" class="form-control" id="urlImagen" th:name="urlImagen" th:value="${habitacion.urlImagen}" placeholder="Ingrese la URL de la imagen" />
+            </div>
+
+            <button type="submit" class="btn btn-success btn-block">Actualizar Habitación</button>
+            <button type="button" class="btn btn-danger btn-block" onclick="window.location.href='/habitaciones/menu'">Cancelar</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
